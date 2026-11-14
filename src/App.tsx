@@ -30,7 +30,7 @@ export default function App() {
           <div className="container hero-grid">
             <div className="hero-copy">
               <p className="eyebrow">Based in {p.location}</p>
-              <h1 id="hero-title">Pyae Pyae<br />Naing</h1>
+              <h1 id="hero-title">Pyae Pyae Naing<span aria-hidden="true">.</span></h1>
             </div>
             <div className="hero-portrait">
               <img className="profile-image" src="/profile-clean.png" alt="Pyae Pyae Naing in a black blazer" width="1122" height="1402" fetchPriority="high" />

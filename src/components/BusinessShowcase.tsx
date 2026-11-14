@@ -28,6 +28,12 @@ export function BusinessShowcase({ onPhotoSelect }: { onPhotoSelect: (index: num
 
   return (
     <article className="business-card" aria-labelledby="business-title">
+      <div className="window-bar" aria-hidden="true">
+        <span className="window-dot window-dot-close" />
+        <span className="window-dot window-dot-minimize" />
+        <span className="window-dot window-dot-maximize" />
+        <span className="window-title">Handmade & Cosmetic Shop</span>
+      </div>
       <div className="business-gallery" role="region" aria-roledescription="carousel" aria-label="Small business videos and photos">
         <div
           ref={viewport}

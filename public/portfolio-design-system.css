@@ -1,15 +1,19 @@
 /* Portfolio design tokens: edit these first when changing the visual theme. */
 :root {
-  --background: #fafafa;
-  --foreground: #1d1d1f;
+  --background: #f5f9fd;
+  --foreground: #0b2340;
   --card: #ffffff;
-  --muted: #f5f5f7;
-  --muted-foreground: #6e6e73;
-  --border: #e8e8ed;
-  --accent: #1d1d1f;
-  --highlight: #0071e3;
+  --muted: #eaf3fb;
+  --muted-foreground: #5f748b;
+  --border: #d8e5f0;
+  --accent: #0b2340;
+  --highlight: #4ba7df;
+  --navy: #0b2340;
+  --navy-soft: #153b60;
+  --blue: #4ba7df;
+  --blue-pale: #dff1fc;
   --radius-control: 16px;
-  --radius-card: 40px;
+  --radius-card: 30px;
   --space-1: 8px;
   --space-2: 16px;
   --space-3: 24px;
@@ -38,18 +42,18 @@ body {
   margin: 12px auto 0;
   padding: 0 24px;
   gap: 24px;
-  border: 1px solid rgb(29 29 31 / .07);
+  border: 1px solid rgb(74 137 180 / .18);
   border-radius: var(--radius-control);
-  background: rgb(250 250 250 / .88);
-  box-shadow: 0 4px 20px rgb(29 29 31 / .045);
+  background: rgb(248 252 255 / .84);
+  box-shadow: 0 8px 30px rgb(16 57 91 / .08), inset 0 1px 0 rgb(255 255 255 / .8);
   -webkit-backdrop-filter: saturate(180%) blur(14px);
   backdrop-filter: saturate(180%) blur(14px);
 }
 .site-header .nav { gap: 22px; font-size: 13px; font-weight: 500; }
 .site-header .nav-title { margin-left: -10px; color: var(--muted-foreground); font-size: 13px; font-weight: 500; }
 .nav > a:not(.button) { transition: color .25s ease; }
-.nav > a:not(.button):after { background: var(--foreground); }
-.section-border { border-color: rgb(29 29 31 / .08); scroll-margin-top: 92px; }
+.nav > a:not(.button):after { background: var(--blue); }
+.section-border { border-color: rgb(61 119 161 / .14); scroll-margin-top: 92px; }
 
 /* Shared buttons and understated section labels. */
 .button {
@@ -61,9 +65,10 @@ body {
   transition: background .25s ease, color .25s ease, border-color .25s ease, transform .25s ease;
 }
 .button:hover { transform: translateY(-1px); }
-.button-default { background: var(--foreground); }
-.button-default:hover { background: #3a3a3c; }
-.button-outline { border-color: rgb(29 29 31 / .16); }
+.button-default { background: var(--navy); box-shadow: 0 6px 16px rgb(11 35 64 / .16); }
+.button-default:hover { background: var(--navy-soft); }
+.button-outline { border-color: rgb(62 126 166 / .26); background: rgb(255 255 255 / .55); }
+.button-outline:hover { background: var(--blue-pale); border-color: var(--blue); }
 .eyebrow {
   color: var(--muted-foreground);
   font-size: 11px;
@@ -129,7 +134,10 @@ body {
 }
 .hero-intro { grid-column: 1; margin-top: 4px; padding-bottom: 128px; }
 .hero-intro > p { max-width: 610px; margin: 0; font-size: clamp(22px, 2.7vw, 30px); line-height: 1.3; letter-spacing: -.035em; }
-.hero-actions { gap: 8px; margin-top: 24px; }
+.hero-actions { position: relative; z-index: 3; display: flex; align-items: center; gap: 8px; margin-top: 24px; }
+.hero-actions .button { position: relative; z-index: 4; visibility: visible; opacity: 1; }
+.hero-actions .button-default { color: #fff; }
+.hero-actions .button-outline { color: var(--navy); }
 .availability { color: var(--muted-foreground); font-size: 12px; }
 
 /* Keep the established two-column, full-image project gallery. */
@@ -210,7 +218,7 @@ body {
 .project:hover .project-cta { background: #f5f5f7; }
 
 /* About, Services, and Contact keep their current content and order. */
-.about { background: #f6f6f7; }
+.about { background: #eaf3fb; }
 .about-grid { gap: 72px; }
 .about-description { max-width: 610px; color: var(--foreground); font-size: clamp(20px, 2.2vw, 25px); line-height: 1.5; letter-spacing: -.025em; }
 .facts, .facts div { border-color: rgb(29 29 31 / .09); }
@@ -222,12 +230,53 @@ body {
 .service-number { color: #8e8e93; font-size: 12px; }
 .service h3 { color: var(--foreground); font-size: 20px; font-weight: 600; letter-spacing: -.025em; }
 .service p { color: var(--muted-foreground); font-size: 14px; line-height: 1.65; }
-.contact { padding: 104px 0 88px; background: #1d1d1f; }
+.contact { position: relative; isolation: isolate; overflow: hidden; padding: 140px 0 88px; background-color: #071a32; background-image: linear-gradient(180deg, rgb(7 26 50 / .78) 0%, rgb(7 26 50 / .48) 46%, rgb(4 18 36 / .88) 100%), url('/deep-blue-ocean-footer.png'); background-position: center, center; background-size: cover; }
+.contact:before, .contact:after { position: absolute; z-index: -1; display: block; content: ""; pointer-events: none; }
+.contact:before {
+  top: -84px;
+  left: -5%;
+  width: 110%;
+  height: 150px;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  background: #f5f9fd;
+  box-shadow: 0 18px 0 rgb(94 185 226 / .2), 0 36px 0 rgb(17 91 130 / .38);
+  transform: rotate(-1.2deg);
+}
+.contact:after {
+  right: -18%;
+  bottom: -180px;
+  width: 76%;
+  height: 360px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgb(71 177 218 / .34) 0%, rgb(12 88 128 / .1) 48%, transparent 72%);
+}
+.contact-panel { position: relative; z-index: 1; }
 .contact h2 { font-size: clamp(44px, 6vw, 68px); font-weight: 650; line-height: .98; letter-spacing: -.065em; }
 .contact-panel > p:not(.eyebrow) { color: #c5c5c8; font-size: 15px; line-height: 1.65; }
 .contact-bottom { border-color: rgb(255 255 255 / .16); color: #a1a1a6; }
 a:focus-visible, button:focus-visible { outline: 3px solid var(--highlight); outline-offset: 3px; }
 .mobile-nav-dock { display: none; }
+
+/* Calm, hardware-inspired surfaces: navy structure with a cool blue glow. */
+.portfolio-hero {
+  background: #fff;
+}
+.portfolio-hero h1 span, .portfolio-hero .eyebrow, .eyebrow { color: #287cac; }
+.availability { display: inline-flex; align-items: center; gap: 8px; }
+.availability:before { width: 7px; height: 7px; border-radius: 50%; background: #44a56c; box-shadow: 0 0 0 4px rgb(68 165 108 / .12); content: ""; }
+.facts, .facts div, .service-list, .service { border-color: rgb(61 119 161 / .16); }
+.facts dd { color: var(--navy-soft); font-weight: 600; }
+.service-number { color: #3b91bd; font-weight: 600; }
+.service h3 { color: var(--navy); }
+.service { transition: background-color .25s ease, padding-left .25s ease; }
+.service:hover { background: rgb(223 241 252 / .58); padding-left: 12px; }
+.gallery-arrow:hover:not(:disabled) { border-color: #5eb9e2; background: rgb(75 167 223 / .26); }
+.business-card { border-color: rgb(61 119 161 / .16); box-shadow: 0 18px 46px rgb(16 57 91 / .1); }
+.business-copy { background: rgb(255 255 255 / .72); }
+.business-tags span { border-color: rgb(61 119 161 / .2); background: #f2f9fe; color: var(--navy-soft); }
+.contact .eyebrow { color: #91c9e8; }
+.contact .button-inverse { color: var(--navy); background: #dff1fc; }
+.contact .button-inverse:hover { background: #fff; }
 
 @media (max-width: 900px) {
   .hero-copy { padding-top: 200px; }
@@ -448,7 +497,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--highlight); out
   .project-tech span { font-size: 10px; }
   .project-cta { min-height: 48px; margin-top: 14px; padding-inline: 16px; font-size: 13px; }
 
-  .about { background: #f6f6f7; }
+  .about { background: #eaf3fb; }
   .about-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .about-description { max-width: 56ch; margin: 0; font-size: clamp(16px, 4.5vw, 18px); line-height: 1.6; letter-spacing: -.015em; }
   .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; margin-top: 10px; }
@@ -462,7 +511,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--highlight); out
   .service h3 { font-size: 17px; line-height: 1.3; }
   .service p { grid-column: 2; margin: 0; font-size: 14px; line-height: 1.55; }
 
-  .contact { padding: 64px 0 calc(48px + env(safe-area-inset-bottom)); }
+  .contact { padding: 116px 0 calc(48px + env(safe-area-inset-bottom)); }
+  .contact:before { top: -68px; height: 112px; box-shadow: 0 14px 0 rgb(94 185 226 / .2), 0 28px 0 rgb(17 91 130 / .38); }
   .contact h2 { max-width: 12ch; margin: 12px 0 14px; font-size: clamp(38px, 10.5vw, 48px); line-height: 1; letter-spacing: -.06em; }
   .contact-panel > p:not(.eyebrow) { max-width: 42ch; margin-bottom: 22px; font-size: 15px; line-height: 1.6; }
   .contact .button { min-height: 48px; }
