@@ -4,11 +4,15 @@ This guide keeps future visual changes low-coupled: change design tokens or a na
 
 ## Active files
 
-The current page loads its existing generated portfolio assets from `index.html`:
+The current page renders from maintained React source and loads the original Pockraft portfolio styles from `index.html`:
 
-- `public/portfolio-state.js` owns the rendered portfolio and its current content.
+- `src/App.tsx` renders the portfolio using the original component classes.
+- `src/data/portfolio.ts` owns the supplied content and media.
+- `public/portfolio-state.js` is retained as an inactive reference.
 - `public/portfolio-state.css` is the generated/base stylesheet. Leave it alone for visual tuning.
-- `public/portfolio-design-system.css` is the custom design layer, loaded after the base stylesheet. Make visual changes here.
+- `public/portfolio-design-system.css` is the original Pockraft design layer, loaded after the base stylesheet.
+- `style.css` contains only additions for the supplied content, videos, and photo dialog. It consumes the original design tokens.
+- `public/mobile-nav-dock.js` supplies the original mobile navigation dock.
 
 The stylesheet uses stable component classes such as `.site-header`, `.portfolio-hero`, `.project`, `.section-heading`, and `.service`. Prefer those classes over selectors that depend on deep markup, such as `.section > div > p`.
 
@@ -80,7 +84,7 @@ At the composition root, map the chosen theme to CSS custom properties once. Kee
 
 ## Keep project cards loosely coupled
 
-When the portfolio is moved back into maintained TypeScript source, keep the data and view separate:
+Keep data and view separate in the maintained TypeScript source:
 
 ```ts
 type Project = {
