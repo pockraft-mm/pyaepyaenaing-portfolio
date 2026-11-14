@@ -143,6 +143,7 @@ body {
 /* Keep the established two-column, full-image project gallery. */
 .work, .about, .services { padding: var(--space-section) 0 96px; }
 .section-heading { margin-bottom: 56px; }
+.section-heading::after { display: block; width: 48px; height: 4px; margin-top: 24px; border-radius: 999px; background: linear-gradient(90deg, #287cac 0 42%, #b9e1f7 42% 100%); content: ""; }
 .section-heading .eyebrow { margin-bottom: 16px; }
 .section-heading h2, .about h2 {
   margin-top: 0;
@@ -218,13 +219,14 @@ body {
 .project:hover .project-cta { background: #f5f5f7; }
 
 /* About, Services, and Contact keep their current content and order. */
-.about { background: #eaf3fb; }
+.about { background-color: #eaf3fb; background-image: radial-gradient(circle at 12% 18%, rgb(75 167 223 / .18) 0 2px, transparent 2.5px), linear-gradient(135deg, transparent 0 49.5%, rgb(75 167 223 / .055) 49.5% 50%, transparent 50% 100%); background-size: 28px 28px, 100% 100%; }
 .about-grid { gap: 72px; }
 .about-description { max-width: 610px; color: var(--foreground); font-size: clamp(20px, 2.2vw, 25px); line-height: 1.5; letter-spacing: -.025em; }
-.facts, .facts div { border-color: rgb(29 29 31 / .09); }
+.facts { gap: 12px 18px; border-top: 0; }
+.facts div { padding: 16px 18px; border: 1px solid rgb(61 119 161 / .16); border-radius: 18px; background: rgb(255 255 255 / .52); box-shadow: inset 0 1px 0 rgb(255 255 255 / .68); }
 .facts dt { color: var(--muted-foreground); font-size: 11px; letter-spacing: .02em; text-transform: none; }
 .facts dd { color: var(--foreground); font-size: 14px; line-height: 1.5; }
-.services { background: var(--background); }
+.services { background-color: var(--background); background-image: linear-gradient(rgb(75 167 223 / .045) 1px, transparent 1px), linear-gradient(90deg, rgb(75 167 223 / .045) 1px, transparent 1px); background-size: 44px 44px; }
 .service-list { border-color: rgb(29 29 31 / .1); }
 .service { grid-template-columns: 48px minmax(0, .9fr) minmax(0, 1.1fr); gap: 24px; padding: 24px 0; border-color: rgb(29 29 31 / .1); }
 .service-number { color: #8e8e93; font-size: 12px; }
@@ -277,6 +279,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--highlight); out
 .contact .eyebrow { color: #91c9e8; }
 .contact .button-inverse { color: var(--navy); background: #dff1fc; }
 .contact .button-inverse:hover { background: #fff; }
+.work { background-color: #f8fbfe; background-image: radial-gradient(circle at 88% 12%, rgb(75 167 223 / .12) 0 2px, transparent 2.5px); background-size: 30px 30px; }
 
 @media (max-width: 900px) {
   .hero-copy { padding-top: 200px; }
@@ -322,7 +325,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--highlight); out
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  .site-header .nav { display: none; }
+  .site-header .nav, .mobile-nav-dock { display: none !important; }
   .section-border { scroll-margin-top: 24px; }
 
   .mobile-nav-dock {
@@ -392,9 +395,13 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--highlight); out
     isolation: isolate;
     display: flex;
     align-items: center;
-    min-height: max(440px, calc(100svh - 104px));
+    min-height: 560px;
+    height: 560px;
     margin-top: 0;
     padding: 24px 0 32px;
+    overflow: clip;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
   .hero-grid.container {
     position: static;
@@ -407,6 +414,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--highlight); out
     margin-inline: auto;
   }
   .hero-copy, .hero-intro { position: relative; z-index: 2; grid-column: 1; padding-left: 0; }
+  .portfolio-hero .hero-copy, .portfolio-hero .hero-intro, .portfolio-hero .hero-portrait { animation: none; }
   .hero-copy { padding-top: 0; }
   .hero-portrait {
     position: absolute;
@@ -500,8 +508,8 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--highlight); out
   .about { background: #eaf3fb; }
   .about-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .about-description { max-width: 56ch; margin: 0; font-size: clamp(16px, 4.5vw, 18px); line-height: 1.6; letter-spacing: -.015em; }
-  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 16px; margin-top: 10px; }
-  .facts div { min-width: 0; padding: 14px 0; }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 16px; margin-top: 18px; }
+  .facts div { min-width: 0; min-height: 88px; padding: 18px 16px; }
   .facts div:nth-child(odd) { margin-right: 0; }
   .facts dt { font-size: 10px; }
   .facts dd { margin-top: 5px; font-size: 13px; overflow-wrap: anywhere; }

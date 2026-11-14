@@ -38,7 +38,7 @@ export default function App() {
             <div className="hero-intro">
               <p>{p.introduction}</p>
               <div className="hero-actions">
-                <a className="button button-default" href="#work">View My Work <ArrowRight size={16} /></a>
+                <a className="button button-default hero-work-button" href="#work">View My Work <ArrowRight size={16} /></a>
                 <a className="button button-outline" href={p.cv} download="Pyae-Pyae-Naing-CV.jpg">Download CV <ArrowDownToLine size={16} /></a>
               </div>
               <span className="availability">{p.role} · Business Operations</span>

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, ArrowUpRight, Film, Image } from 'lucide-react';
+import { ArrowUpRight, Film, Image } from 'lucide-react';
 import { portfolio as p } from '../data/portfolio';
 
 const slides = [
@@ -56,7 +56,7 @@ export function BusinessShowcase({ onPhotoSelect }: { onPhotoSelect: (index: num
           {slides.map((slide, index) => (
             <div className="business-slide" key={slide.src} role="group" aria-roledescription="slide" aria-label={`${index + 1} of ${slides.length}: ${slide.title}`} inert={index !== active}>
               {slide.kind === 'video' ? (
-                <video src={`${slide.src}#t=0.1`} controls playsInline preload={index === active ? 'metadata' : 'none'} aria-label={slide.title} />
+                <video src={`${slide.src}#t=0.1`} autoPlay muted loop playsInline preload={index === active ? 'metadata' : 'none'} aria-label={slide.title} />
               ) : (
                 <button className="business-photo" onClick={() => onPhotoSelect(slide.photoIndex)} aria-label={`Enlarge ${slide.title.toLowerCase()}`}>
                   <img src={slide.src} alt={slide.alt} loading="lazy" />
@@ -67,11 +67,9 @@ export function BusinessShowcase({ onPhotoSelect }: { onPhotoSelect: (index: num
           ))}
         </div>
         <div className="gallery-controls">
-          <button className="gallery-arrow" aria-label="Previous slide" aria-controls="business-media" disabled={active === 0} onClick={() => goTo(active - 1)}><ArrowLeft size={18} /></button>
           <div className="gallery-dots" aria-label="Choose a slide">
             {slides.map((slide, index) => <button key={slide.src} className="gallery-dot" aria-label={`Show ${slide.title.toLowerCase()}`} aria-current={active === index ? 'true' : undefined} aria-controls="business-media" onClick={() => goTo(index)}><span /></button>)}
           </div>
-          <button className="gallery-arrow" aria-label="Next slide" aria-controls="business-media" disabled={active === slides.length - 1} onClick={() => goTo(active + 1)}><ArrowRight size={18} /></button>
         </div>
       </div>
       <div className="business-copy">

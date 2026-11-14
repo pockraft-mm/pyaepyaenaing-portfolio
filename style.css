@@ -10,7 +10,7 @@ body { background: var(--background); }
 .portfolio-hero h1 { overflow-wrap: normal; }
 .portfolio-hero h1 { white-space: normal; font-size: clamp(48px, 7.3vw, 88px); letter-spacing: -.075em; }
 .portfolio-hero h1 span { color: var(--light-blue-strong); }
-.portfolio-hero .eyebrow { color: var(--light-blue-strong); }
+.portfolio-hero .eyebrow { display: inline-flex; align-items: center; padding: 0; border-radius: 0; color: #4ba7df !important; background: transparent; text-shadow: none; }
 .portfolio-hero .hero-intro { animation: clean-rise .72s cubic-bezier(.22, 1, .36, 1) both; }
 .portfolio-hero .hero-copy { animation: clean-rise .72s .06s cubic-bezier(.22, 1, .36, 1) both; }
 .portfolio-hero .hero-portrait { animation: clean-rise .8s .12s cubic-bezier(.22, 1, .36, 1) both; }
@@ -21,6 +21,8 @@ body { background: var(--background); }
 .project-cta { width: 100%; border: 0; font-family: inherit; cursor: pointer; }
 a.button.button-default { background-color: #0b2340 !important; color: #fff !important; border-color: #0b2340 !important; box-shadow: inset 0 0 0 1px rgb(185 225 247 / .45), 0 6px 16px rgb(11 35 64 / .16); }
 a.button.button-default:hover { background-color: #153b60 !important; border-color: #153b60 !important; box-shadow: inset 0 0 0 1px #b9e1f7; }
+a.button.hero-work-button { background-color: #b9e1f7 !important; color: #0b2340 !important; border-color: #8ed0ef !important; box-shadow: inset 0 0 0 1px rgb(255 255 255 / .65), 0 6px 16px rgb(43 123 171 / .16); }
+a.button.hero-work-button:hover { background-color: #8ed0ef !important; border-color: #4ba7df !important; }
 a.button.button-outline { background-color: #fff !important; color: #0b2340 !important; border-color: rgb(62 126 166 / .35) !important; }
 a.button.button-outline:hover { background-color: #dff1fc !important; border-color: #287cac !important; }
 .about-outlook { max-width: 610px; margin: 24px 0 0; color: var(--muted-foreground); font-size: 15px; line-height: 1.7; }
@@ -38,6 +40,7 @@ summary:focus-visible { outline: 3px solid var(--highlight); outline-offset: 3px
 @media (prefers-reduced-motion: reduce) { .portfolio-hero .hero-copy, .portfolio-hero .hero-intro, .portfolio-hero .hero-portrait { animation: none; } }
 @media (min-width: 721px) and (max-width: 1000px) { .site-header .nav-title { display: none; } }
 @media (max-width: 720px) {
+  .site-header { display: none; }
   .hero-copy, .hero-intro { padding-right: 0; }
   .hero-copy { padding-bottom: 0; }
   .portfolio-hero h1 { font-size: clamp(36px, 11vw, 62px); letter-spacing: -.07em; }
@@ -65,7 +68,7 @@ summary:focus-visible { outline: 3px solid var(--highlight); outline-offset: 3px
 .business-photo { position: relative; display: block; width: 100%; height: 100%; border: 0; padding: 0; background: #17171a; }
 .business-photo img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .business-photo > span { position: absolute; right: 18px; top: 18px; display: flex; align-items: center; gap: 8px; padding: 11px 16px; border-radius: 999px; background: var(--card); color: var(--foreground); font-size: 12px; }
-.gallery-controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px; }
+.gallery-controls { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 12px 20px; }
 .gallery-arrow { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid rgb(255 255 255 / .25); border-radius: 50%; color: #fff; background: transparent; }
 .gallery-arrow:hover:not(:disabled) { background: rgb(255 255 255 / .12); }
 .gallery-arrow:disabled { opacity: .3; cursor: default; }
