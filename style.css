@@ -10,7 +10,7 @@ body { background: var(--background); }
 .portfolio-hero h1 { overflow-wrap: normal; }
 .portfolio-hero h1 { white-space: normal; font-size: clamp(48px, 7.3vw, 88px); letter-spacing: -.075em; }
 .portfolio-hero h1 span { color: var(--light-blue-strong); }
-.portfolio-hero .eyebrow { display: inline-flex; align-items: center; padding: 0; border-radius: 0; color: #4ba7df !important; background: transparent; text-shadow: none; }
+.portfolio-hero .eyebrow { display: inline-flex; align-items: center; padding: 7px 11px; border-radius: 999px; color: #fff !important; background: var(--navy); text-shadow: none; }
 .portfolio-hero .hero-intro { animation: clean-rise .72s cubic-bezier(.22, 1, .36, 1) both; }
 .portfolio-hero .hero-copy { animation: clean-rise .72s .06s cubic-bezier(.22, 1, .36, 1) both; }
 .portfolio-hero .hero-portrait { animation: clean-rise .8s .12s cubic-bezier(.22, 1, .36, 1) both; }
