@@ -270,6 +270,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--highlight); out
 .facts dd { color: var(--navy-soft); font-weight: 600; }
 .service-number { color: #3b91bd; font-weight: 600; }
 .service h3 { color: var(--navy); }
+.education-icon { display: inline-block; margin-right: 10px; vertical-align: -3px; color: var(--blue); stroke-width: 2.2; }
 .service { transition: background-color .25s ease, padding-left .25s ease; }
 .service:hover { background: rgb(223 241 252 / .58); padding-left: 12px; }
 .gallery-arrow:hover:not(:disabled) { border-color: #5eb9e2; background: rgb(75 167 223 / .26); }
@@ -325,7 +326,7 @@ a:focus-visible, button:focus-visible { outline: 3px solid var(--highlight); out
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-  .site-header .nav, .mobile-nav-dock { display: none !important; }
+  .site-header .nav { display: none !important; }
   .section-border { scroll-margin-top: 24px; }
 
   .mobile-nav-dock {

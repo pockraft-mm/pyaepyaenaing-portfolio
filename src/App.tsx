@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowDownToLine, ArrowRight, ArrowUpRight, X } from 'lucide-react';
+import { ArrowDownToLine, ArrowRight, ArrowUpRight, Award, BookOpen, GraduationCap, Globe2, School, X } from 'lucide-react';
 import { portfolio as p } from './data/portfolio';
 import { BusinessShowcase } from './components/BusinessShowcase';
 
 const navigation = [['About', 'about'], ['Experience', 'experience'], ['Education', 'education'], ['Work', 'work'], ['Contact', 'contact']];
+const educationIcons = [GraduationCap, Award, Globe2, BookOpen, School];
 
 export default function App() {
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
@@ -71,7 +72,7 @@ export default function App() {
           <div className="container">
             <div className="section-heading"><p className="eyebrow">Education</p><h2 id="education-title">Building a strong foundation.</h2></div>
             <div className="service-list">
-              {p.education.map((item, index) => <article className="service" key={item.title}><span className="service-number">0{index + 1}</span><h3>{item.title}</h3><div><p>{item.institution}</p><p className="entry-subtitle">{item.years}</p></div></article>)}
+              {p.education.map((item, index) => { const EducationIcon = educationIcons[index] ?? School; return <article className="service" key={item.title}><span className="service-number">0{index + 1}</span><h3><EducationIcon className="education-icon" size={18} aria-hidden="true" />{item.title}</h3><div><p>{item.institution}</p><p className="entry-subtitle">{item.years}</p></div></article>; })}
             </div>
             <p className="language-note">Chinese · Level 1 completed — Ys Chinese Language School</p>
           </div>
