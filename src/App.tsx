@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowDownToLine, ArrowRight, ArrowUpRight, Award, BookOpen, GraduationCap, Globe2, School, X } from 'lucide-react';
+import { ArrowDownToLine, ArrowRight, ArrowUpRight, X } from 'lucide-react';
 import { portfolio as p } from './data/portfolio';
 import { BusinessShowcase } from './components/BusinessShowcase';
 
 const navigation = [['About', 'about'], ['Experience', 'experience'], ['Education', 'education'], ['Work', 'work'], ['Contact', 'contact']];
-const educationIcons = [GraduationCap, Award, Globe2, BookOpen, School];
+const educationLogos = ['/miba-collage-logo.png', '/kmd-college-logo.png', '/shrm-college-logo.png', '/shrm-college-logo.png', '/no-16-bhs-logo.jpg'];
+const educationDisplayOrder = [0, 1, 2, 3, 4];
 
 export default function App() {
   const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null);
@@ -14,6 +15,23 @@ export default function App() {
     if (selectedPhoto !== null) photoDialog.current?.showModal();
     else photoDialog.current?.close();
   }, [selectedPhoto]);
+
+  useEffect(() => {
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const targets = document.querySelectorAll<HTMLElement>('.about-grid > div:first-child, .about-window, .section-heading, .service, .education-card-static, .work .business-card, .contact-panel');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('scroll-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+    targets.forEach(target => {
+      target.classList.add('scroll-enter');
+      observer.observe(target);
+    });
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
@@ -27,40 +45,31 @@ export default function App() {
       </header>
 
       <main id="main">
-        <section className="portfolio-hero section-border" id="top" aria-labelledby="hero-title">
-          <div className="container hero-grid">
-            <div className="hero-copy">
-              <p className="eyebrow">Based in {p.location}</p>
-              <h1 id="hero-title">Pyae Pyae Naing<span aria-hidden="true">.</span></h1>
-            </div>
-            <div className="hero-portrait">
-              <img className="profile-image" src="/profile-clean.png" alt="Pyae Pyae Naing in a black blazer" width="1122" height="1402" fetchPriority="high" />
-            </div>
-            <div className="hero-intro">
-              <p>{p.introduction}</p>
-              <div className="hero-actions">
-                <a className="button button-default hero-work-button" href="#work">View My Work <ArrowRight size={16} /></a>
-                <a className="button button-outline" href={p.cv} download="Pyae-Pyae-Naing-CV.jpg">Download CV <ArrowDownToLine size={16} /></a>
-              </div>
-              <span className="availability">{p.role} · Business Operations</span>
-            </div>
+        <section className="portrait-hero section-border" id="top" aria-labelledby="hero-title">
+          <div className="portrait-frame">
+            <img className="portrait-frame-image" src="/nora1-cutout.png" alt="Pyae Pyae Naing" width="978" height="1608" fetchPriority="high" />
+            <div className="hero-quick-actions"><a href="#about">About me <ArrowRight size={15} aria-hidden="true" /></a><a href={p.cv} download="Pyae-Pyae-Naing-CV.jpg">Download my CV <ArrowDownToLine size={15} aria-hidden="true" /></a></div>
+            <h1 id="hero-title">Pyae Pyae Naing</h1>
           </div>
         </section>
 
         <section className="about section-border" id="about" aria-labelledby="about-title">
           <div className="container about-grid">
-            <div><p className="eyebrow">About</p><h2 id="about-title">A little about me</h2></div>
-            <div>
-              <p className="about-description">{p.about}</p>
-              <p className="about-outlook">{p.outlook}</p>
-              <dl className="facts"><div><dt>Background</dt><dd>International business</dd></div><div><dt>Location</dt><dd>{p.location}</dd></div><div><dt>Role</dt><dd>{p.role}</dd></div><div><dt>Focus</dt><dd>Accounting & business operations</dd></div></dl>
+            <div><h2 id="about-title">A little About me</h2></div>
+            <div className="about-window">
+              <div className="about-window-bar" aria-hidden="true"><span className="window-light window-light-red" /><span className="window-light window-light-yellow" /><span className="window-light window-light-green" /><span className="about-window-title">About me</span></div>
+              <div className="about-window-content">
+                <p className="about-description">{p.about}</p>
+                <p className="about-outlook">{p.outlook}</p>
+                <dl className="facts"><div><dt>Background</dt><dd>International business</dd></div><div><dt>Location</dt><dd>{p.location}</dd></div><div><dt>Role</dt><dd>{p.role}</dd></div><div><dt>Focus</dt><dd>Accounting & business operations</dd></div></dl>
+              </div>
             </div>
           </div>
         </section>
 
         <section className="services section-border" id="experience" aria-labelledby="experience-title">
           <div className="container">
-            <div className="section-heading"><p className="eyebrow">Experience</p><h2 id="experience-title">Learning through doing.</h2></div>
+            <div className="section-heading"><h2 id="experience-title">Experience</h2></div>
             <div className="service-list">
               <article className="service"><span className="service-number">01</span><div><h3>{p.role}</h3><p className="entry-subtitle">{p.company}</p></div><p>Accounting role within a digital marketing agency.</p></article>
               <article className="service"><span className="service-number">02</span><div><h3>Page Admin & Shop Operations</h3><p className="entry-subtitle">Handmade & Cosmetic Shop · 2020 – 2023</p></div><ul className="experience-details">{p.responsibilities.map(item => <li key={item}>{item}</li>)}</ul></article>
@@ -70,24 +79,30 @@ export default function App() {
 
         <section className="services education-section section-border" id="education" aria-labelledby="education-title">
           <div className="container">
-            <div className="section-heading"><p className="eyebrow">Education</p><h2 id="education-title">Building a strong foundation.</h2></div>
-            <div className="service-list">
-              {p.education.map((item, index) => { const EducationIcon = educationIcons[index] ?? School; return <article className="service" key={item.title}><span className="service-number">0{index + 1}</span><h3><EducationIcon className="education-icon" size={18} aria-hidden="true" />{item.title}</h3><div><p>{item.institution}</p><p className="entry-subtitle">{item.years}</p></div></article>; })}
+            <div className="section-heading"><h2 id="education-title">Education</h2></div>
+            <div className="education-grid">
+              {educationDisplayOrder.map((educationIndex, displayIndex) => { const item = p.education[educationIndex]; return <article className="education-card-static" key={item.title}>
+                <img src={educationLogos[educationIndex]} alt={`${item.institution} logo`} loading="lazy" />
+                <div><span className="education-card-index">0{displayIndex + 1} / 06 · {item.years}</span><h3>{item.title}</h3><p>{item.institution}</p></div>
+              </article>; })}
+              <article className="education-card-static education-card-language">
+                <img src="/ys-chinese-language-school-logo.png" alt="Ys Chinese Language School logo" loading="lazy" />
+                <div><span className="education-card-index">06 / 06 · Level 1 completed</span><h3>Chinese Language</h3><p>Ys Chinese Language School</p></div>
+              </article>
             </div>
-            <p className="language-note">Chinese · Level 1 completed — Ys Chinese Language School</p>
           </div>
         </section>
 
         <section className="work section-border" id="work" aria-labelledby="work-title">
           <div className="container">
-            <div className="section-heading"><p className="eyebrow">My work</p><h2 id="work-title">A small business.<br />A personal commitment.</h2></div>
+            <div className="section-heading"><h2 id="work-title">My work</h2></div>
             <BusinessShowcase onPhotoSelect={setSelectedPhoto} />
           </div>
         </section>
 
         <section className="services section-border" id="skills" aria-labelledby="skills-title">
           <div className="container">
-            <div className="section-heading"><p className="eyebrow">What I bring</p><h2 id="skills-title">How I can help</h2></div>
+            <div className="section-heading"><h2 id="skills-title">What I bring</h2></div>
             <div className="service-list">{p.skills.map((skill, index) => <article className="service" key={skill.title}><span className="service-number">0{index + 1}</span><h3>{skill.title}</h3><p>{skill.description}</p></article>)}</div>
           </div>
         </section>

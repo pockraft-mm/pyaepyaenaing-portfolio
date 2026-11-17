@@ -75,12 +75,9 @@ export function BusinessShowcase({ onPhotoSelect }: { onPhotoSelect: (index: num
       <div className="business-copy">
         <p className="eyebrow">Small business · 2020 – 2023</p>
         <h3 id="business-title">Handmade &<br />Cosmetic Shop</h3>
-        <p>A look at my online shop, where creativity meets the practical work of running a business.</p>
-        <div className="business-tags"><span>Shop operations</span><span>Handmade products</span></div>
-        <p className="business-summary">From sourcing products and managing stock to budgeting and daily operations, every detail was part of the work.</p>
+        <p>My online shop, from handmade products to daily operations.</p>
         <div className="gallery-caption">
           <span aria-live="polite" aria-atomic="true">{active < p.videos.length ? <Film size={16} /> : <Image size={16} />} {slides[active].title} · {active + 1} / {slides.length}</span>
-          <span>Swipe to explore · 3 videos, 2 photos</span>
         </div>
       </div>
     </article>

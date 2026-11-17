@@ -2,7 +2,6 @@ import cv from '../../data/nora-cv.jpg';
 import giftBox from '../../data/online-shop-product3.jpg';
 import mirror from '../../data/online-shop-product4.jpg';
 import videoOne from '../../data/online-shop-product1.mp4';
-import videoTwo from '../../data/online-shop-product2.mp4';
 import videoThree from '../../data/online-shop-product5.mp4';
 
 // Transcribed from data/nora-cv.jpg and data/profile.jpg~.
@@ -28,6 +27,7 @@ export const portfolio = {
     { years: '2023 – 2024', title: 'Advanced in International Business Management', institution: 'School of Hospitality and Resort Management, Singapore' },
     { years: '2022 – 2023', title: 'Diploma in International Business Management', institution: 'School of Hospitality and Resort Management, Singapore' },
     { years: '2019 – 2020', title: 'Matriculation', institution: 'No. 6 B.E.H.S., Mawlamyine' },
+    { years: 'Level 1 completed', title: 'Chinese Language', institution: 'Ys Chinese Language School' },
   ],
   skills: [
     { title: 'Business operations', description: 'Daily shop management, product sourcing, and inventory coordination.' },
@@ -39,5 +39,5 @@ export const portfolio = {
     { src: giftBox, title: 'Gift box arrangement', category: 'Handmade gifts', alt: 'Gift box with red roses and carefully arranged rolled banknotes' },
     { src: mirror, title: 'Decorative mirror', category: 'Handmade accessories', alt: 'Hand-decorated blue mirror with pastel embellishments' },
   ],
-  videos: [videoOne, videoTwo, videoThree],
+  videos: [videoOne, videoThree],
 };
