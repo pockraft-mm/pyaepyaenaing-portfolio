@@ -33,6 +33,7 @@ a.button.hero-work-button:hover { background-color: #8ed0ef !important; border-c
 a.button.button-outline { background-color: #fff !important; color: #0b2340 !important; border-color: rgb(62 126 166 / .35) !important; }
 a.button.button-outline:hover { background-color: #dff1fc !important; border-color: #287cac !important; }
 .about { position: relative; padding-top: 176px; border-bottom: 0; background: linear-gradient(180deg, #6f90aa 0%, #799bb7 52%, #eaf3fb 100%); color: #fff; }
+#experience { background: #fff; background-image: none; }
 .about h2 { color: #fff; }
 .about .eyebrow { color: rgb(255 255 255 / .82); }
 .about-window { overflow: hidden; border: 1px solid rgb(255 255 255 / .75); border-radius: 20px; background: #fff; box-shadow: 0 24px 70px rgb(19 49 74 / .18), 0 2px 10px rgb(19 49 74 / .08); }
