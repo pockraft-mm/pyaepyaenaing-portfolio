@@ -47,7 +47,7 @@ export default function App() {
       <main id="main">
         <section className="portrait-hero section-border" id="top" aria-labelledby="hero-title">
           <div className="portrait-frame">
-            <img className="portrait-frame-image" src="/nora1-cutout.png" alt="Pyae Pyae Naing" width="978" height="1608" fetchPriority="high" />
+            <img className="portrait-frame-image" src="/nora-in-burmese-cutout.png" alt="Pyae Pyae Naing in Burmese dress" width="1024" height="1536" fetchPriority="high" />
             <div className="hero-quick-actions"><a href="#about">About me <ArrowRight size={15} aria-hidden="true" /></a><a href={p.cv} download="Pyae-Pyae-Naing-CV.jpg">Download my CV <ArrowDownToLine size={15} aria-hidden="true" /></a></div>
             <h1 id="hero-title">Pyae Pyae Naing</h1>
           </div>

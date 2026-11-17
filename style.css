@@ -5,6 +5,7 @@ svg { flex-shrink: 0; }
 :root { --highlight: #4ba7df; --light-blue: #b9e1f7; --light-blue-strong: #287cac; }
 ::selection { color: #fff; background: #287cac; }
 body { background: var(--background); }
+html, body { overscroll-behavior-y: none; }
 .skip-link { position: fixed; top: -100px; left: 20px; padding: 14px 20px; z-index: 100; background: var(--background); }
 .skip-link:focus { top: 10px; }
 .portfolio-hero h1 { overflow-wrap: normal; }
@@ -161,7 +162,7 @@ summary:focus-visible { outline: 3px solid var(--highlight); outline-offset: 3px
 }
 
 /* Full portrait hero inspired by the supplied reference. */
-.portrait-hero { padding: 0; border-bottom: 0; background: #6f90aa; }
+.portrait-hero { margin-top: 0; padding: 0; border-bottom: 0; background: #6f90aa; }
 .portrait-frame {
   position: relative;
   isolation: isolate;
@@ -177,12 +178,13 @@ summary:focus-visible { outline: 3px solid var(--highlight); outline-offset: 3px
   background: linear-gradient(180deg, #7798b2 0%, #6f90aa 100%);
   box-shadow: none;
 }
-.portrait-frame-image { position: absolute; z-index: 1; inset: auto 0 0; display: block; width: min(84%, 900px); height: 105%; margin-inline: auto; object-fit: contain; object-position: center bottom; }
+.portrait-frame-image { position: absolute; z-index: 1; inset: auto 0 0; top: 44px; display: block; width: min(84%, 900px); height: calc(105% - 44px); margin-inline: auto; object-fit: contain; object-position: center bottom; transition: transform .55s cubic-bezier(.22, 1, .36, 1), filter .55s ease; }
+.portrait-frame:hover .portrait-frame-image { transform: translateY(-10px) scale(1.015); filter: drop-shadow(0 18px 24px rgb(23 52 82 / .18)); }
 .portrait-frame::after { content: ''; position: absolute; z-index: 1; inset: auto 0 0; height: 24%; pointer-events: none; background: linear-gradient(180deg, transparent, rgb(111 144 170 / .32) 65%, #6f90aa); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); mask-image: linear-gradient(transparent, #000 65%); }
 .hero-quick-actions { position: absolute; z-index: 3; top: 55%; left: 64%; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
 .hero-quick-actions a { display: inline-flex; align-items: center; justify-content: space-between; gap: 14px; min-width: 158px; min-height: 42px; padding: 10px 16px; border: 1px solid rgb(255 255 255 / .55); border-radius: 999px; background: rgb(255 255 255 / .87); color: #173452; font-size: 12px; font-weight: 650; box-shadow: 0 8px 24px rgb(23 52 82 / .12); backdrop-filter: blur(12px); transition: transform .3s cubic-bezier(.2,.8,.2,1), background .3s; }
 .hero-quick-actions a:hover { transform: translateY(-3px); background: #fff; }
-.portrait-frame h1 { position: relative; z-index: 2; width: 100%; margin: 0; padding: 0 .025em clamp(28px, 4vw, 64px); color: #fff; font-size: clamp(50px, 8vw, 150px); font-weight: 800; line-height: .9; letter-spacing: -.075em; text-align: center; text-transform: uppercase; white-space: nowrap; text-shadow: 0 2px 14px rgb(20 39 58 / .1); }
+.portrait-frame h1 { position: relative; z-index: 2; width: 100%; margin: 0; padding: 0 .025em clamp(72px, 6vw, 108px); color: #fff; font-size: clamp(50px, 8vw, 150px); font-weight: 800; line-height: .9; letter-spacing: -.075em; text-align: center; text-transform: uppercase; white-space: nowrap; text-shadow: 0 2px 14px rgb(20 39 58 / .1); }
 @media (max-width: 720px) {
   .portrait-hero { padding: 0 12px; }
   .portrait-frame {
@@ -248,9 +250,28 @@ summary:focus-visible { outline: 3px solid var(--highlight); outline-offset: 3px
 /* Subtle section entrances with a spring-like ease, without hiding backgrounds. */
 .scroll-enter { opacity: 0; transform: translateY(22px) scale(.985); }
 .scroll-enter.scroll-visible { opacity: 1; transform: none; transition: opacity .72s cubic-bezier(.22,1,.36,1), transform .72s cubic-bezier(.22,1,.36,1); }
+.education-card-static, .service, .about-window, .business-card, .project, .hero-quick-actions a { transition: transform .45s cubic-bezier(.22, 1, .36, 1), box-shadow .45s cubic-bezier(.22, 1, .36, 1), border-color .3s ease, background-color .3s ease; }
+.education-card-static:hover, .service:hover, .about-window:hover, .business-card:hover, .project:hover { transform: translateY(-6px); box-shadow: 0 18px 42px rgb(20 52 78 / .12); }
+.education-card-static:hover { border-color: #b9d8ee; background: #fff; }
+.service:hover { padding-inline: 14px; border-color: #b9d8ee; background: rgb(255 255 255 / .58); }
+.project:hover { transform: translateY(-4px); }
+.project:hover .project-image { transform: scale(1.025); }
+.site-header .nav a { transition: color .25s ease, transform .25s cubic-bezier(.22, 1, .36, 1); }
+.site-header .nav a:hover { transform: translateY(-2px); }
+.hero-quick-actions a:hover { transform: translateY(-4px) scale(1.015); box-shadow: 0 14px 28px rgb(23 52 82 / .18); }
+.button { transition: transform .25s cubic-bezier(.22, 1, .36, 1), background .25s ease, color .25s ease, border-color .25s ease, box-shadow .25s ease; }
+.button:hover { transform: translateY(-2px); }
+.button:active, .hero-quick-actions a:active, .gallery-arrow:active { transform: scale(.97); }
+@media (prefers-reduced-motion: no-preference) {
+  .section-heading h2, .about h2, .business-copy h3 { animation: soft-focus-in .8s cubic-bezier(.22, 1, .36, 1) both; }
+}
+@keyframes soft-focus-in { from { opacity: 0; filter: blur(4px); transform: translateY(10px); } to { opacity: 1; filter: blur(0); transform: translateY(0); } }
 @media (prefers-reduced-motion: reduce) {
   .scroll-enter, .scroll-enter.scroll-visible { opacity: 1; transform: none; transition: none; }
   .hero-quick-actions a { transition: none; }
+  .portrait-frame-image { transition: none; }
+  .education-card-static, .service, .about-window, .business-card, .project, .hero-quick-actions a, .button, .site-header .nav a { transition: none; }
+  .education-card-static:hover, .service:hover, .about-window:hover, .business-card:hover, .project:hover, .project:hover .project-image, .hero-quick-actions a:hover, .button:hover, .button:active, .hero-quick-actions a:active, .gallery-arrow:active { transform: none; }
 }
 
 /* Compact landscape media screen for the small-business project. */
